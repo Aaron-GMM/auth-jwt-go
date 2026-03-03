@@ -10,17 +10,21 @@ import (
 
 var Db *gorm.DB
 
-func InitializeDatabase(dns string) (*gorm.DB, error) {
+func InitializeDatabase(dsn string) (*gorm.DB, error) {
 	logger := config.GetLogger("postegresql")
-	var err error
-	Db, err = gorm.Open(postgres.Open(dns), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		logger.ErrorF("Error connecting to database: %v", err)
+		logger.ErrorF("Error connecting to database: %s", err.Error())
+		return nil, err // Pare aqui se der erro!
 	}
-	err = Db.AutoMigrate(&entity.User{})
+
+	// Só migra se a conexão for bem-sucedida
+	err = db.AutoMigrate(&entity.User{})
 	if err != nil {
-		logger.ErrorF("Error auto-migrating database: %v", err)
+		logger.ErrorF("Error migrating database: %s", err.Error())
+		return nil, err
 	}
-	return Db, err
+
+	return db, nil
 
 }
