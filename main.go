@@ -14,7 +14,7 @@ func main() {
 	logger := config.GetLogger("main")
 
 	// 2. Database (Usando a URL do .env)
-	_, err := database.InitializeDatabase(cfg.DBURL)
+	db, err := database.InitializeDatabase(cfg.DBURL)
 	if err != nil {
 		log.Fatalf("Nao foi possivel conectar ao banco: %v", err)
 	}
@@ -22,5 +22,5 @@ func main() {
 	logger.InforF("Serviço de Autenticação pronto!")
 
 	// O próximo passo será ligar o Router do Gin aqui
-	router.InitRouter()
+	router.InitRouter(db)
 }
