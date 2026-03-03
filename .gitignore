@@ -1,0 +1,9 @@
+/.gitIgonore
+
+.idea
+.env
+
+*.exe
+*.dll
+*.so
+*.dylib

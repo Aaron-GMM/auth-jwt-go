@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: authdb_container
+    restart: always
+    environment:
+      POSTGRES_USER: ${user}
+      POSTGRES_PASSWORD: ${password}
+      POSTGRES_DB: ${dbname}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: authApp_containergit
+    depends_on:
+      - db
+    environment:
+      DB_URL: host=${host} user=${user} password=${password} dbname=${dbname} port=${port} sslmode=${sslmode}
+      JWT_SECRET: keyMicroServiceAuth
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
