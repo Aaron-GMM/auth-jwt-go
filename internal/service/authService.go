@@ -4,14 +4,13 @@ import (
 	"errors"
 
 	"github.com/Aaron-GMM/auth-jwt-go/internal/domain/entity"
-	"github.com/Aaron-GMM/auth-jwt-go/internal/handler"
 	"github.com/Aaron-GMM/auth-jwt-go/internal/handler/requestDTOs"
 	"github.com/Aaron-GMM/auth-jwt-go/internal/infra/config"
 	"github.com/Aaron-GMM/auth-jwt-go/internal/repository"
 	"golang.org/x/crypto/bcrypt"
 )
 
-var Logger = handler.Logger
+var Logger = config.GetLogger("Service")
 
 type AuthService interface {
 	Register(req requestDTOs.RegisterRequestDTO) (string, error)
