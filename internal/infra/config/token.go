@@ -17,6 +17,7 @@ func GenerateToken(UserID uint) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, err := token.SignedString(secreatKey)
 	if err != nil {
+		Logger.ErrorF("Error generating token: %s", err.Error())
 		return "", err
 	}
 	return tokenString, nil

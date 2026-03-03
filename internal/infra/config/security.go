@@ -1,12 +1,12 @@
 package config
 
 import (
-	"github.com/Aaron-GMM/auth-jwt-go/internal/handler"
 	"golang.org/x/crypto/bcrypt"
 )
 
+var Logger = GetLogger("Security")
+
 func HashPassword(password string) (string, error) {
-	Logger := handler.Logger
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	if err != nil {
 		Logger.ErrorF("bcrypt hash error: %v", err.Error())
@@ -18,7 +18,6 @@ func HashPassword(password string) (string, error) {
 }
 
 func CheckPasswordHash(password, hash string) bool {
-	Logger := handler.Logger
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	if err != nil {
 		Logger.ErrorF("bcrypt hash error: %v", err.Error())

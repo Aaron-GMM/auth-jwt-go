@@ -2,9 +2,11 @@ package repository
 
 import (
 	"github.com/Aaron-GMM/auth-jwt-go/internal/domain/entity"
-	"github.com/Aaron-GMM/auth-jwt-go/internal/handler"
+	"github.com/Aaron-GMM/auth-jwt-go/internal/infra/config"
 	"gorm.io/gorm"
 )
+
+var Logger = config.GetLogger("Service")
 
 type AuthRepository interface {
 	CreateUser(user *entity.User) error
@@ -18,7 +20,7 @@ func NewAuthRepository(db *gorm.DB) AuthRepository {
 	return &authRepository{db: db}
 }
 func (r *authRepository) CreateUser(user *entity.User) error {
-	Logger := handler.Logger
+
 	err := r.db.Create(user).Error
 	if err != nil {
 		Logger.ErrorF("create user error: %v", err.Error())
@@ -28,7 +30,6 @@ func (r *authRepository) CreateUser(user *entity.User) error {
 
 }
 func (r *authRepository) FindUserByEmail(email string) (*entity.User, error) {
-	Logger := handler.Logger
 	var user entity.User
 	err := r.db.Where("email = ?", email).First(&user).Error
 	if err != nil {
