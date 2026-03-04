@@ -1,5 +1,12 @@
 # 🔐 Auth JWT Microservice in Go
-
+<p align="left">
+  <img src="https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white" />
+  <img src="https://img.shields.io/badge/Gin-008080?style=flat&logo=gin&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/JWT-black?style=flat&logo=json-web-tokens&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/Clean%20Architecture-black?style=flat" />
+</p>
 Um microsserviço de autenticação construído em **Go (Golang)** focado em performance, segurança e boas práticas de engenharia de software. O projeto utiliza **Clean Architecture** para garantir o isolamento das regras de negócio, facilitando a manutenção e a escalabilidade.
 
 ## 🚀 Tecnologias e Ferramentas
