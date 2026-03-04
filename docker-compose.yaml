@@ -24,7 +24,7 @@ services:
           condition: service_healthy
     environment:
       DB_URL: host=${host} user=${user} password=${password} dbname=${dbname} port=${port} sslmode=${sslmode}
-      JWT_SECRET: ${ SECRET_KEY_JWT }
+      JWT_SECRET: ${SECRET_KEY_JWT}
     ports:
       - "8080:8080"
 
