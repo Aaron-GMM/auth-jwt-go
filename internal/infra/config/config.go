@@ -28,7 +28,7 @@ func LoadConfig() *Config {
 
 	return &Config{
 		DBURL:  os.Getenv("DB_URL"),
-		JWTKey: os.Getenv("JWT_SECRET"),
+		JWTKey: os.Getenv("SECRET_KEY_JWT"),
 	}
 }
 func GetDb() *gorm.DB {
